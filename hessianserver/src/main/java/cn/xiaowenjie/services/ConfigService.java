@@ -25,6 +25,7 @@ public class ConfigService implements IConfigService {
 	@Override
 	public ResultBean<Long> addConfig(Config config) {
 		System.out.println("addConfig：" + config);
+		
 		long id = idSequence.incrementAndGet();
 
 		config.setId(id);

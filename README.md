@@ -1,5 +1,5 @@
 # HessianDemo
-最近公司有个项目使用了Hessian，特做个Demo备份。
+最近公司有个项目使用了Hessian（麻袋布），特做个Demo备份。
 
 Hessian以高性能，使用简单闻名，使用起来确实非常简单，结合强大的SpringBoot，整个范例实现了config的CRUD，代码不到50行，非常有实战意义。
 
@@ -21,13 +21,51 @@ Hessian以高性能，使用简单闻名，使用起来确实非常简单，结�
 ## 引入hessiancommon。
 ## 加入hessian依赖
 ## 实现IConfigService接口。
-## 发布hessian服务
+## 发布hessian服务(HessianServiceExporter)
+```Java
+/**
+ * 发布Config的Hessian服务
+ * 
+ * @author 晓风轻 https://github.com/xwjie/HessianDemo
+ *
+ */
+@Configuration
+public class HessianConfig {
+	@Autowired
+	private IConfigService configService;
+
+	@Bean(name = "/ConfigService")
+	public HessianServiceExporter hessianServiceExporter() {
+		HessianServiceExporter exporter = new HessianServiceExporter();
+
+		exporter.setService(configService);
+		exporter.setServiceInterface(IConfigService.class);
+
+		return exporter;
+	}
+}
+```
 
 # hessianclient工程
 
 ## 引入hessiancommon
 ## 加入hessian依赖
-## 配置hessian服务
+## 配置hessian服务(HessianProxyFactoryBean)
+```Java
+@Configuration
+public class HessianConfig {
+
+	@Bean
+	public HessianProxyFactoryBean helloClient() {
+		HessianProxyFactoryBean factory = new HessianProxyFactoryBean();
+
+		factory.setServiceUrl("http://localhost:8080/ConfigService");
+		factory.setServiceInterface(IConfigService.class);
+
+		return factory;
+	}
+}
+```
 
 # 测试
 
@@ -62,7 +100,6 @@ public class HessianclientApplicationTests {
 		ResultBean<Boolean> deleteResult = configService.delete(addResult.getData());
 		System.out.println(deleteResult);
 	}
-
 }
 ```
 

@@ -12,7 +12,7 @@ public class TestBean {
 	}
 	
 	public void close() {
-		System.out.println("TestBean.init() @Bean(name = \"A\", initMethod = \"init\",destroyMethod=\"close\" )");
+		System.out.println("TestBean.close() @Bean(name = \"A\", initMethod = \"init\",destroyMethod=\"close\" )");
 	}
 
 	@Cacheable()

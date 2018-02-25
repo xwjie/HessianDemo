@@ -45,6 +45,7 @@ public class HessianclientApplicationTests {
 		// class org.springframework.remoting.caucho.HessianProxyFactoryBean
 		System.out.println(bean2.getClass());
 
+		/*
 		Object bean3 = context.getBean("testBean");
 		// class cn.xiaowenjie.hessianclient.TestBean$$EnhancerBySpringCGLIB$$a5718275
 		System.out.println(bean3.getClass());
@@ -53,6 +54,7 @@ public class HessianclientApplicationTests {
 		// 'testBean' is expected to be of type
 		Object bean4 = context.getBean("&testBean");
 		System.out.println(bean4.getClass());
+		*/
 
 		ResultBean<Long> addResult = configService.addConfig(Config.builder().name("配置项名称").value("配置项值").build());
 		System.out.println(addResult);

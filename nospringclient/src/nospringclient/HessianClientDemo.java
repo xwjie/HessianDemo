@@ -21,6 +21,7 @@ public class HessianClientDemo {
 		// hessian只支持basic认证
 		factory.setUser("username");
 		factory.setPassword("password");
+		factory.setDebug(true);
 		
 
 		IConfigService configService = (IConfigService) factory.create(IConfigService.class, url);

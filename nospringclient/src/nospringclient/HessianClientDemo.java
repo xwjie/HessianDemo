@@ -4,7 +4,6 @@ import java.net.MalformedURLException;
 import java.util.Collection;
 
 import com.caucho.hessian.client.HessianProxyFactory;
-import com.caucho.hessian.io.HessianMethodSerializationException;
 
 import cn.xiaowenjie.beans.Config;
 import cn.xiaowenjie.beans.ResultBean;
@@ -19,8 +18,10 @@ public class HessianClientDemo {
 		HessianProxyFactory factory = new HessianProxyFactory();
 		
 		// 鉴权相关信息在factory上配置
+		// hessian只支持basic认证
 		factory.setUser("username");
 		factory.setPassword("password");
+		
 
 		IConfigService configService = (IConfigService) factory.create(IConfigService.class, url);
 

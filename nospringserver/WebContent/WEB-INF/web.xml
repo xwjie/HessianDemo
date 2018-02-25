@@ -20,6 +20,11 @@
 			<param-name>service-class</param-name>
 			<param-value>cn.xiaowenjie.services.ConfigServiceImpl</param-value>
 		</init-param>
+		<init-param>
+		<!-- 已经失效 -->
+			<param-name>debug</param-name>
+			<param-value>true</param-value>
+		</init-param>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>HessianServlet</servlet-name>
